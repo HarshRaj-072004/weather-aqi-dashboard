@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Weather & AQI Dashboard</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding: 2rem;
+      background: linear-gradient(to bottom, #dbe9f4, #f3f9fb);
+    }
+    #dashboard {
+      margin: 2rem auto;
+      padding: 2rem;
+      border-radius: 10px;
+      max-width: 500px;
+      background: #ffffff;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+    input, button {
+      padding: 0.5rem;
+      font-size: 1rem;
+      margin: 0.5rem;
+    }
+    .aqi-good { color: green; }
+    .aqi-moderate { color: orange; }
+    .aqi-poor { color: red; }
+  </style>
+</head>
+<body>
+  <h1>Weather & AQI Dashboard</h1>
+  <input type="text" id="cityInput" placeholder="Enter city name" />
+  <button onclick="fetchWeatherAndAQI()">Get Info</button>
+
+  <div id="dashboard">
+    <h2 id="city"></h2>
+    <p id="weather"></p>
+    <p id="aqi"></p>
+  </div>
+
+  <script>
+    const weatherKey = '41cd502bc7a739c91a7b29e8e3c13c8a';
+    const aqiKey = 'e614fdc9-dcf3-429f-aaf3-e053f1795d3a';
+
+    async function fetchWeatherAndAQI() {
+      const city = document.getElementById("cityInput").value;
+      if (!city) return alert("Please enter a city name");
+
+      // Get weather data
+      const weatherURL = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${weatherKey}&units=metric`;
+      const weatherRes = await fetch(weatherURL);
+      const weatherData = await weatherRes.json();
+
+      // Show weather info
+      const temp = weatherData.main.temp;
+      const desc = weatherData.weather[0].description;
+      document.getElementById("city").textContent = city.toUpperCase();
+      document.getElementById("weather").textContent = `🌤️ ${temp}°C, ${desc}`;
+
+      // Get AQI data (requires lat/lon from weather data)
+      const lat = weatherData.coord.lat;
+      const lon = weatherData.coord.lon;
+      const aqiURL = `https://api.airvisual.com/v2/nearest_city?lat=${lat}&lon=${lon}&key=${aqiKey}`;
+      const aqiRes = await fetch(aqiURL);
+      const aqiData = await aqiRes.json();
+
+      const aqiVal = aqiData.data.current.pollution.aqius;
+      let quality = "", className = "";
+      if (aqiVal <= 50) { quality = "Good"; className = "aqi-good"; }
+      else if (aqiVal <= 100) { quality = "Moderate"; className = "aqi-moderate"; }
+      else { quality = "Poor"; className = "aqi-poor"; }
+
+      document.getElementById("aqi").innerHTML = `AQI: <span class="${className}">${aqiVal} (${quality})</span>`;
+    }
+  </script>
+</body>
+</html>
