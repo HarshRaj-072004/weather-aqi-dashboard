@@ -1,0 +1,26 @@
+body {
+  font-family: Arial, sans-serif;
+  text-align: center;
+  padding: 2rem;
+  background: linear-gradient(to bottom, #dbe9f4, #f3f9fb);
+}
+
+#dashboard {
+  margin: 2rem auto;
+  padding: 2rem;
+  border-radius: 10px;
+  max-width: 500px;
+  background: #ffffff;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+input, button {
+  padding: 0.5rem;
+  font-size: 1rem;
+  margin: 0.5rem;
+}
+
+.aqi-good { color: green; }
+.aqi-moderate { color: orange; }
+.aqi-poor { color: red; }
+
