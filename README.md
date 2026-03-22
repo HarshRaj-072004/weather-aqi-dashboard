@@ -17,7 +17,7 @@ A real-time dashboard built with HTML, CSS, and JavaScript that fetches current 
 
 1. Clone the repo:
    ```
-   git clone https://github.com/your-username/weather-aqi-dashboard.git
+   git clone https://github.com/HarshRaj-072004/weather-aqi-dashboard.git
    ```
 
 2. Get your API keys from:
