@@ -1,19 +1,19 @@
-# 🌤️ Weather & AQI Dashboard
+#  Weather & AQI Dashboard
 
 A real-time dashboard built with HTML, CSS, and JavaScript that fetches current weather and air quality data using the OpenWeatherMap and AirVisual APIs.
 
-## 📌 Features
+##  Features
 - Search by city name
 - Displays current temperature and weather conditions
 - Fetches and color-codes Air Quality Index (AQI)
 - Responsive and easy to use
 
-## 🛠️ Tech Stack
+##  Tech Stack
 - HTML, CSS, JavaScript
 - OpenWeatherMap API
 - IQAir AirVisual API
 
-## 🚀 Setup
+##  Setup
 
 1. Clone the repo:
    ```
@@ -28,9 +28,6 @@ A real-time dashboard built with HTML, CSS, and JavaScript that fetches current 
 
 4. Open `index.html` in your browser.
 
-## 💡 Screenshot
 
-![Screenshot](screenshot.png)
-
-## 📄 License
+## License
 MIT
